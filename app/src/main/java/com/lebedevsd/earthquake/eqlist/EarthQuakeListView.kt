@@ -125,7 +125,16 @@ constructor(
                 itemBinding.magnitudeValue.text = getMagnitude(earthQuake)
                 itemBinding.dateValue.text =
                     earthQuake.datetime?.let { DateToStringUtil.dateToString(it) }
+                itemBinding.iconImage.setImageResource(getImageResource(earthQuake))
                 itemBinding.root.setOnClickListener { view.listener.onItemClicked(earthQuake) }
+            }
+
+            private fun getImageResource(earthQuake: EarthQuake): Int {
+                return if (earthQuake.isGreat) {
+                    R.drawable.ic_outline_waves_24
+                } else {
+                    R.drawable.ic_outline_water_24
+                }
             }
 
             private fun getMagnitude(earthQuake: EarthQuake) =

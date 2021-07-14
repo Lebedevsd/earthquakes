@@ -18,7 +18,9 @@ import javax.inject.Inject
 class EarthQuakeDetailsFragment : Fragment(R.layout.earth_quake_details_fragment) {
 
     @Inject lateinit var viewModelFactory: EarthQuakeDetailsViewModelFactory
-    private val viewModel: EarthQuakeDetailsViewModel by getViewModel {viewModelFactory.create(earthQuake)}
+    private val viewModel: EarthQuakeDetailsViewModel by getViewModel {
+        viewModelFactory.create(earthQuake).apply { this.initialize() }
+    }
     private var earthQuakeDetailsView: EarthQuakeDetailsView? = null
 
     private val args: EarthQuakeDetailsFragmentArgs by navArgs()
@@ -30,12 +32,9 @@ class EarthQuakeDetailsFragment : Fragment(R.layout.earth_quake_details_fragment
 
         earthQuakeDetailsView?.setListener(viewModel)
         print(earthQuake.toString())
-//        viewModel.states().observe(viewLifecycleOwner) {
-//            earthQuakeDetailsView?.render(it)
-//        }
-//        viewModel.events().observe(viewLifecycleOwner) {
-//
-//        }
+        viewModel.states().observe(viewLifecycleOwner) {
+            earthQuakeDetailsView?.render(it)
+        }
     }
 
     override fun onDestroyView() {

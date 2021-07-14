@@ -54,6 +54,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 def retrofitVersion = "2.9.0"
@@ -74,6 +78,8 @@ def daggerVersion = "2.37"
 def navVersion = "2.3.5"
 def cardViewVersion = "1.0.0"
 def swipeToRefreshVersion = "1.1.0"
+def mapsVersion = "17.0.1"
+def coreTestingVersion = "2.1.0"
 
 dependencies {
     implementation "com.google.dagger:hilt-android:$daggerVersion"
@@ -91,6 +97,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeToRefreshVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "com.google.android.gms:play-services-maps:$mapsVersion"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
@@ -105,6 +112,7 @@ dependencies {
 
     testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation "org.assertj:assertj-core:$assertJVersion"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"

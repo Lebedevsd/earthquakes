@@ -17,18 +17,20 @@ class EarthQuakeDetailsViewModel
 ) : ViewModel(), ViewContract {
 
     private val liveData = MutableLiveData<EarthQuakeDetailsModel>()
-    private val liveEvents = MutableLiveData<Event<EarthQuakeDetailEvent>>()
 
     fun states(): LiveData<EarthQuakeDetailsModel> = liveData
-    fun events(): LiveData<Event<EarthQuakeDetailEvent>> = liveEvents
 
+    fun initialize() {
+        liveData.postValue(EarthQuakeDetailsModel(earthQuake))
+    }
 
 }
 
-class EarthQuakeDetailsModel()
-class EarthQuakeDetailEvent()
+data class EarthQuakeDetailsModel(
+    val earthQuake: EarthQuake
+)
 
 @AssistedFactory
-interface EarthQuakeDetailsViewModelFactory{
+interface EarthQuakeDetailsViewModelFactory {
     fun create(earthQuake: EarthQuake): EarthQuakeDetailsViewModel
 }

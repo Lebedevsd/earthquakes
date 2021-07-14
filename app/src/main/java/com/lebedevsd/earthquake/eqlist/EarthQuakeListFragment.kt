@@ -9,12 +9,20 @@ import com.lebedevsd.earthquake.R
 import com.lebedevsd.earthquake.api.APIEarthQuake
 import com.lebedevsd.earthquake.data.EarthQuake
 import com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsFragment
+import com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsViewModel
+import com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsViewModelFactory
+import com.lebedevsd.earthquake.util.getViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class EarthQuakeListFragment : Fragment(R.layout.earth_quake_list_fragment) {
 
-    private val viewModel: EarthQuakeListViewModel by viewModels()
+    @Inject lateinit var viewModelFactory: EarthQuakeListViewModelFactory
+    private val viewModel: EarthQuakeListViewModel by getViewModel {
+        viewModelFactory.create().also { it.initialize() }
+    }
+
     private var earthQuakeListView: EarthQuakeListView? = null
 
 

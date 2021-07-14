@@ -43,20 +43,4 @@ object NetworkModule {
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
-
-    @MainScheduler
-    @Provides
-    fun provideMainScheduler() = AndroidSchedulers.mainThread()
-
-    @IOScheduler
-    @Provides
-    fun provideIOScheduler() = Schedulers.io()
 }
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class MainScheduler
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class IOScheduler

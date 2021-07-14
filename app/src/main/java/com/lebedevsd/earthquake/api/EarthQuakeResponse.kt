@@ -15,7 +15,6 @@ data class EarthQuakeResponse(
     val earthquakes: List<APIEarthQuake>
 )
 
-@Parcelize
 @JsonClass(generateAdapter = true)
 data class APIEarthQuake(
     @Json(name = "datetime")
@@ -32,12 +31,4 @@ data class APIEarthQuake(
     val magnitude: Float,
     @Json(name = "lat")
     val lat: Double
-) : Parcelable {
-
-    fun isGreatEarthQuake() = magnitude >= GREAT_EARTH_QUAKE_THRESHOLD
-
-    companion object{
-        private const val GREAT_EARTH_QUAKE_THRESHOLD = 8.0F
-    }
-
-}
+)
