@@ -1,4 +1,4 @@
-![app_usage](app_usage.gif)
+<img src="app_usage.gif" width="30%" height="30%">
 
 ## Secrets
 
