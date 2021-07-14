@@ -48,7 +48,7 @@ class EarthQuakeListFragment : Fragment(R.layout.earth_quake_list_fragment) {
                 EarthQuakeDetailsFragment.Params(earthQuake)
             )
         }
-        findNavController().navigate(R.id.earthQuakeDetailsFragment, bundle)
+        findNavController().navigate(R.id.action_earthQuakeListFragment_to_earthQuakeDetailsFragment, bundle)
     }
 
     override fun onDestroyView() {

@@ -3,6 +3,7 @@ package com.lebedevsd.earthquake.eqdetails
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import androidx.annotation.Keep
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -42,6 +43,7 @@ class EarthQuakeDetailsFragment : Fragment(R.layout.earth_quake_details_fragment
         super.onDestroyView()
     }
 
+    @Keep
     @Parcelize
     data class Params(
         val earthQuake: EarthQuake

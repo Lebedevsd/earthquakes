@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:networkSecurityConfig="@xml/networtk_security_config"
         android:name=".EarthQuakeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +22,6 @@
         </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="${MAPS_API_KEY}" />
     </application>
 </manifest>

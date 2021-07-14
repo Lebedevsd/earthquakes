@@ -5,6 +5,8 @@ apply plugin: "dagger.hilt.android.plugin"
 apply plugin: "de.mannodermaus.android-junit5"
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: "kotlin-parcelize"
+apply plugin: "com.google.android.libraries.mapsplatform.secrets-gradle-plugin"
+
 
 def compileSDKVersion = 30
 def minSDKVersion = 23

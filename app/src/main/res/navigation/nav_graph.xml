@@ -10,7 +10,7 @@
         android:label="EarthQuakeListFragment">
         <action
             android:id="@+id/action_earthQuakeListFragment_to_earthQuakeDetailsFragment"
-            app:destination="@id/earthQuakeDetailsFragment" />
+            app:destination="@id/earthQuakeDetailsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/earthQuakeDetailsFragment"
