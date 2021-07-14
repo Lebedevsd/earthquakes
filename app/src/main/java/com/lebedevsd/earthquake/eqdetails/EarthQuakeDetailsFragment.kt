@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.lebedevsd.earthquake.R
 import com.lebedevsd.earthquake.api.APIEarthQuake
+import com.lebedevsd.earthquake.data.EarthQuake
 import com.lebedevsd.earthquake.util.getViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.parcelize.Parcelize
@@ -21,7 +22,7 @@ class EarthQuakeDetailsFragment : Fragment(R.layout.earth_quake_details_fragment
     private var earthQuakeDetailsView: EarthQuakeDetailsView? = null
 
     private val args: EarthQuakeDetailsFragmentArgs by navArgs()
-    private val earthQuake: APIEarthQuake by lazy { args.params.earthQuake as APIEarthQuake }
+    private val earthQuake: EarthQuake by lazy { args.params.earthQuake as EarthQuake }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +45,7 @@ class EarthQuakeDetailsFragment : Fragment(R.layout.earth_quake_details_fragment
 
     @Parcelize
     data class Params(
-        val earthQuake: APIEarthQuake
+        val earthQuake: EarthQuake
     ) : Parcelable {
         companion object {
             const val KEY = "params"

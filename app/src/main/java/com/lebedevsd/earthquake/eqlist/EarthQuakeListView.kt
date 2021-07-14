@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.lebedevsd.earthquake.R
 import com.lebedevsd.earthquake.api.APIEarthQuake
+import com.lebedevsd.earthquake.data.EarthQuake
 import com.lebedevsd.earthquake.databinding.EarthQuakeListItemBinding
 import com.lebedevsd.earthquake.databinding.EarthQuakeListViewBinding
 import com.lebedevsd.earthquake.util.DateToStringUtil
@@ -90,9 +91,9 @@ constructor(
 
     class EarthQuakeAdapter(private val view: EarthQuakeListView) :
         RecyclerView.Adapter<EarthQuakeAdapter.ViewHolder>() {
-        private val earthQuakes: MutableList<APIEarthQuake> = mutableListOf()
+        private val earthQuakes: MutableList<EarthQuake> = mutableListOf()
 
-        fun setEarthQuakes(earthQuakes: List<APIEarthQuake>) {
+        fun setEarthQuakes(earthQuakes: List<EarthQuake>) {
             this.earthQuakes.clear()
             this.earthQuakes.addAll(earthQuakes)
             notifyDataSetChanged()
@@ -120,15 +121,15 @@ constructor(
 
         class ViewHolder internal constructor(private val itemBinding: EarthQuakeListItemBinding) :
             RecyclerView.ViewHolder(itemBinding.root) {
-            fun bind(earthQuake: APIEarthQuake, view: EarthQuakeListView) {
+            fun bind(earthQuake: EarthQuake, view: EarthQuakeListView) {
                 itemBinding.magnitudeValue.text = getMagnitude(earthQuake)
                 itemBinding.dateValue.text =
                     earthQuake.datetime?.let { DateToStringUtil.dateToString(it) }
                 itemBinding.root.setOnClickListener { view.listener.onItemClicked(earthQuake) }
             }
 
-            private fun getMagnitude(earthQuake: APIEarthQuake) =
-                if (earthQuake.isGreatEarthQuake()) {
+            private fun getMagnitude(earthQuake: EarthQuake) =
+                if (earthQuake.isGreat) {
                     SpannableStringBuilder()
                         .bold { append(earthQuake.magnitude.toString()) }
                 } else {
@@ -140,14 +141,14 @@ constructor(
 
 interface ViewContract {
     fun refreshItems()
-    fun onItemClicked(earthQuake: APIEarthQuake)
+    fun onItemClicked(earthQuake: EarthQuake)
 
     object NULL : ViewContract {
         override fun refreshItems() {
             // NO Implementation
         }
 
-        override fun onItemClicked(earthQuake: APIEarthQuake) {
+        override fun onItemClicked(earthQuake: EarthQuake) {
             // NO Implementation
         }
     }

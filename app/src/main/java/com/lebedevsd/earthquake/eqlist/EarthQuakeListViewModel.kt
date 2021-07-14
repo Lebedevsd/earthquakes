@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lebedevsd.earthquake.R
 import com.lebedevsd.earthquake.api.APIEarthQuake
+import com.lebedevsd.earthquake.data.EarthQuake
 import com.lebedevsd.earthquake.util.Event
 import dagger.assisted.AssistedFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -38,7 +39,7 @@ class EarthQuakeListViewModel
         )
     }
 
-    private fun processResult(data: Result<List<APIEarthQuake>>) {
+    private fun processResult(data: Result<List<EarthQuake>>) {
         liveData.postValue(
             if (data.isFailure) {
                 EarthQuakeListModel.Error(R.string.error_loading_data)
@@ -57,17 +58,17 @@ class EarthQuakeListViewModel
         refreshSubject.onNext(Unit)
     }
 
-    override fun onItemClicked(earthQuake: APIEarthQuake) {
+    override fun onItemClicked(earthQuake: EarthQuake) {
         liveEvents.postValue(Event(EarthQuakeListEvent.NavigateDetails(earthQuake)))
     }
 }
 
 sealed class EarthQuakeListModel {
     object Loading : EarthQuakeListModel()
-    data class Data(val value: List<APIEarthQuake>) : EarthQuakeListModel()
+    data class Data(val value: List<EarthQuake>) : EarthQuakeListModel()
     data class Error(@StringRes val message: Int) : EarthQuakeListModel()
 }
 
 sealed class EarthQuakeListEvent {
-    data class NavigateDetails(val earthQuake: APIEarthQuake) : EarthQuakeListEvent()
+    data class NavigateDetails(val earthQuake: EarthQuake) : EarthQuakeListEvent()
 }

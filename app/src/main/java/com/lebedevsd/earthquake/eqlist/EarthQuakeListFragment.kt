@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.lebedevsd.earthquake.R
 import com.lebedevsd.earthquake.api.APIEarthQuake
+import com.lebedevsd.earthquake.data.EarthQuake
 import com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +33,7 @@ class EarthQuakeListFragment : Fragment(R.layout.earth_quake_list_fragment) {
         }
     }
 
-    private fun navigateDetails(earthQuake: APIEarthQuake) {
+    private fun navigateDetails(earthQuake: EarthQuake) {
         val bundle = Bundle().apply {
             putParcelable(
                 EarthQuakeDetailsFragment.Params.KEY,
