@@ -1,0 +1,120 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "de.mannodermaus.android-junit5"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "kotlin-parcelize"
+
+def compileSDKVersion = 30
+def minSDKVersion = 23
+def targetSDKVersion = 30
+def appVersionCode = 1
+def appVersionName = "1.0"
+//buildToolsVersion "30.0.3"
+
+android {
+    compileSdkVersion compileSDKVersion
+
+    signingConfigs {
+        pseudoRelease {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file(System.getProperty("user.home") + '/.android/debug.keystore')
+            storePassword 'android'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.lebedevsd.earthquake"
+        minSdkVersion minSDKVersion
+        targetSdkVersion targetSDKVersion
+        versionCode appVersionCode
+        versionName appVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.pseudoRelease
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+def retrofitVersion = "2.9.0"
+def rxJavaVersion = "3.0.13"
+def rxAndroidVersion = "3.0.0"
+def appCompatVersion = "1.3.0"
+def constraintLayoutVersion = "2.0.4"
+def recyclerViewVersion = "1.2.1"
+def moshiVersion = "1.12.0"
+def junitVersion = "5.7.2"
+def mockkVersion = "1.12.0"
+def assertJVersion = "3.20.2"
+def coreKtxVersion = "1.6.0"
+def materialVersion = "1.4.0"
+def androidJunitVersion = "1.1.3"
+def espressoVersion = "3.4.0"
+def daggerVersion = "2.37"
+def navVersion = "2.3.5"
+def cardViewVersion = "1.0.0"
+def swipeToRefreshVersion = "1.1.0"
+
+dependencies {
+    implementation "com.google.dagger:hilt-android:$daggerVersion"
+    kapt "com.google.dagger:hilt-compiler:$daggerVersion"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.cardview:cardview:$cardViewVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeToRefreshVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+
+    implementation "com.squareup.moshi:moshi:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+
+    implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
+
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.assertj:assertj-core:$assertJVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+
+    testImplementation("junit:junit:4.13.2")
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
+
+    androidTestImplementation "androidx.test.ext:junit:$androidJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/earthQuakeListFragment">
+
+    <fragment
+        android:id="@+id/earthQuakeListFragment"
+        android:name="com.lebedevsd.earthquake.eqlist.EarthQuakeListFragment"
+        android:label="EarthQuakeListFragment">
+        <action
+            android:id="@+id/action_earthQuakeListFragment_to_earthQuakeDetailsFragment"
+            app:destination="@id/earthQuakeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/earthQuakeDetailsFragment"
+        android:name="com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsFragment"
+        android:label="EarthQuakeDetailsFragment">
+        <argument
+            android:name="params"
+            app:argType="com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsFragment$Params" />
+    </fragment>
+</navigation>

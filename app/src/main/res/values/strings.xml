@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">earthquake</string>
+
+    <string name="error_loading_data">Failure loading data, check your internet connection and try again</string>
+    <string name="date">Date:</string>
+    <string name="magnitude">Magnitude:</string>
+    <string name="location">Location:</string>
+</resources>
