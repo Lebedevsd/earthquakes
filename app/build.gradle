@@ -13,7 +13,6 @@ def minSDKVersion = 23
 def targetSDKVersion = 30
 def appVersionCode = 1
 def appVersionName = "1.0"
-//buildToolsVersion "30.0.3"
 
 android {
     compileSdkVersion compileSDKVersion
