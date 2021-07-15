@@ -2,11 +2,13 @@ package com.lebedevsd.earthquake.eqlist
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.lebedevsd.earthquake.R
 import com.lebedevsd.earthquake.api.APIEarthQuake
+import com.lebedevsd.earthquake.base.BaseFragment
 import com.lebedevsd.earthquake.data.EarthQuake
 import com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsFragment
 import com.lebedevsd.earthquake.eqdetails.EarthQuakeDetailsViewModel
@@ -16,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EarthQuakeListFragment : Fragment(R.layout.earth_quake_list_fragment) {
+class EarthQuakeListFragment : BaseFragment(R.layout.earth_quake_list_fragment) {
 
     @Inject lateinit var viewModelFactory: EarthQuakeListViewModelFactory
     private val viewModel: EarthQuakeListViewModel by getViewModel {
@@ -28,6 +30,7 @@ class EarthQuakeListFragment : Fragment(R.layout.earth_quake_list_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupActionBar(view.findViewById(R.id.toolbar))
         earthQuakeListView = view.findViewById(R.id.earth_quake_list_view)
 
         earthQuakeListView?.setListener(viewModel)
@@ -48,7 +51,10 @@ class EarthQuakeListFragment : Fragment(R.layout.earth_quake_list_fragment) {
                 EarthQuakeDetailsFragment.Params(earthQuake)
             )
         }
-        findNavController().navigate(R.id.action_earthQuakeListFragment_to_earthQuakeDetailsFragment, bundle)
+        findNavController().navigate(
+            R.id.action_earthQuakeListFragment_to_earthQuakeDetailsFragment,
+            bundle
+        )
     }
 
     override fun onDestroyView() {

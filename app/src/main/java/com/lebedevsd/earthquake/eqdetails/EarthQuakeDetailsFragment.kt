@@ -2,13 +2,15 @@ package com.lebedevsd.earthquake.eqdetails
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.MenuItem
 import android.view.View
 import androidx.annotation.Keep
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.lebedevsd.earthquake.R
-import com.lebedevsd.earthquake.api.APIEarthQuake
+import com.lebedevsd.earthquake.base.BaseFragment
 import com.lebedevsd.earthquake.data.EarthQuake
 import com.lebedevsd.earthquake.util.getViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +18,7 @@ import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EarthQuakeDetailsFragment : Fragment(R.layout.earth_quake_details_fragment) {
+class EarthQuakeDetailsFragment : BaseFragment(R.layout.earth_quake_details_fragment) {
 
     @Inject lateinit var viewModelFactory: EarthQuakeDetailsViewModelFactory
     private val viewModel: EarthQuakeDetailsViewModel by getViewModel {
@@ -29,6 +31,7 @@ class EarthQuakeDetailsFragment : Fragment(R.layout.earth_quake_details_fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupActionBarWithBackButton(view.findViewById(R.id.toolbar))
         earthQuakeDetailsView = view.findViewById(R.id.earth_quake_details_view)
 
         earthQuakeDetailsView?.setListener(viewModel)

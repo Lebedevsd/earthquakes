@@ -6,4 +6,6 @@
     <string name="magnitude">Magnitude:</string>
     <string name="location">Location:</string>
     <string name="eq_tooltip_info">Earthquake with id=%s with magnitude of %s, happen at %s</string>
+    <string name="eq_map_title">EarthQuake Location</string>
+    <string name="eq_list_title">EarthQuakes List</string>
 </resources>

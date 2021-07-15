@@ -43,4 +43,9 @@ object NetworkModule {
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
+
+    @Provides
+    fun provideEQService(retrofit: Retrofit): EarthQuakeRestApi =
+        retrofit.create(EarthQuakeRestApi::class.java)
+
 }

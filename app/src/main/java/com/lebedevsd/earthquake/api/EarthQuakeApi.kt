@@ -15,12 +15,8 @@ import javax.inject.Inject
 class EarthQuakeApi
 @Inject
 constructor(
-    private val retrofit: Retrofit
+    private val service: EarthQuakeRestApi
 ) {
-
-    private val service: EarthQuakeRestApi by lazy {
-        retrofit.create(EarthQuakeRestApi::class.java)
-    }
 
     private val options = hashMapOf(
         EarthQuakeRestApi.FORMATTED to EarthQuakeRestApi.FORMATTED_DEFAULT,
