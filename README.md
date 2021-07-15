@@ -1,8 +1,16 @@
 <img src="app_usage.gif" width="30%" height="30%">
 
+## Info
+
+Application fetches the EarthQuakes data from api: 
+`http://api.geonames.org/earthquakesJSONformatted=true&north=44.1&south=-9.9&east=-22.4&west=55.2&username=mkoppelman`
+
+Displays earthquakes in a list format, if the magnitude of the quake is equal or greater than 8, then the magnitude is hightited and icon shows bigger quakes. 
+By clicking the item in the list, second screen is opened, showing the location of the quake on a map.
+
 ## Secrets
 
-1. Put MAPS_API_KEY variable to your local.properties, otherwise the map would not be available.
+1. Put `MAPS_API_KEY` variable to your local.properties, otherwise the map would not be available.
 
 ## How to run:
 
